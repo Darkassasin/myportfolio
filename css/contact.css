@@ -1,0 +1,115 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Vertical Floating Button */
+.floating-button {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffffff;
+    color: rgb(128, 128, 128);
+    border: none;
+    padding: 15px;
+    border-radius: 10px 0 0 10px;
+    font-size: 10px;
+    cursor: pointer;
+    writing-mode: vertical-lr; /* Rotates Text */
+    text-align: center;
+    font-weight: bold;
+    box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease-in-out;
+    z-index: 10;
+}
+.floating-button:hover {
+    background: #0080ff;
+}
+
+/* Contact Card - Initially Hidden */
+.contact-card {
+    position: fixed;
+    right: -350px; /* Start Off-Screen */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 320px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    transition: right 0.5s ease-in-out;
+}
+
+/* Show the Card */
+.contact-card.show {
+    right: 20px;
+}
+
+/* Profile Section */
+.profile {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #0073e6;
+}
+.profile h3 {
+    margin: 10px 0 5px;
+    color: #333;
+}
+.profile p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Contact Details */
+.contact-info {
+    margin-top: 10px;
+    font-size: 14px;
+}
+.contact-info a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #0073e6;
+    display: block;
+    margin: 5px 0;
+    text-align: right;
+    padding-right: 5px;
+    transition: 0.3s ease-in-out;
+}
+.contact-info a:hover {
+    color: #005bb5;
+}
+
+/* QR Code */
+.qr-container {
+    text-align: center;
+    margin: 10px 0;
+}
+.qr-container img {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+}
+
+/* Overlay for Click-to-Close */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+.overlay.show {
+    display: block;
+}
