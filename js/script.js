@@ -176,23 +176,3 @@ $(function(){
 	
 	
 });
-
-function toggleCard() {
-    const card = document.querySelector(".contact-card");
-    const overlay = document.querySelector(".overlay");
-    if (card.classList.contains("show")) {
-        card.classList.remove("show");
-        overlay.classList.remove("show");
-    } else {
-        card.classList.add("show");
-        overlay.classList.add("show");
-    }
-}
-
-function generateQRCode() {
-    const phoneNumber = "+9779808946085";  // Replace with your WhatsApp number
-    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://wa.me/${phoneNumber}`;
-    document.getElementById("whatsappQR").src = qrCodeUrl;
-}
-
-window.onload = generateQRCode;
