@@ -1306,7 +1306,7 @@ body.section-show .transition-mask:before{
 	margin-bottom:60px;
 }
 .post > .media > img{
-	max-width:100%;
+	max-width:50%;
 }
 .post > .content{
 	margin-top:25px;
