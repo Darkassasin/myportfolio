@@ -174,5 +174,23 @@ $(function(){
 		}
 	});
 	
+
+	$('.edu-node').click(function() {
+        // Remove 'active' from all nodes
+        $('.edu-node').removeClass('active');
+        $(this).addClass('active');
+
+        // Get the selected degree
+        var degree = $(this).data('degree');
+
+        // Show the corresponding degree details and hide others
+        $('.degree-details').each(function() {
+            if ($(this).attr('id') === degree) {
+                $(this).addClass('active');
+            } else {
+                $(this).removeClass('active');
+            }
+        });
+    });
 	
 });
