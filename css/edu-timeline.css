@@ -1,154 +1,237 @@
-/* ------------------- */
-/* CONTENT BLOCKS & HEADINGS */
-/* ------------------- */
-.content-block {
-    max-width: 1100px;
-    margin: auto;
-    margin-bottom: 80px;
-}
+/* Alternative 1: Always Vertical Timeline with Enhanced Mobile Layout */
 
-.content-block h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 28px;
-    font-weight: 700;
-}
-
-/* ------------------- */
-/* EDUCATION TRACK */
-/* ------------------- */
 .edu-track-wrapper {
-    overflow-x: auto;
-    padding-bottom: 20px;
+  margin: 40px 0;
 }
 
 .edu-track {
-    display: flex;
-    position: relative;
-    min-width: 900px;
-    padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .edu-track::before {
-    content: "";
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: #d1d5db;
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #007bff, #28a745, #ffc107);
+  transform: translateX(-50%);
+  z-index: 1;
 }
 
 .edu-node {
-    flex: 1;
-    text-align: center;
-    position: relative;
-    cursor: pointer;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 400px;
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+}
+
+.edu-node:nth-child(even) {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.edu-node:nth-child(even) .degree-card {
+  margin-left: 30px;
+  margin-right: 0;
 }
 
 .node-marker {
-    width: 18px;
-    height: 18px;
-    background: white;
-    border: 4px solid #2563eb;
-    border-radius: 50%;
-    margin: auto;
-    position: relative;
-    transition: 0.3s;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #007bff;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px #007bff;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .edu-node.active .node-marker {
-    transform: scale(1.4);
-    background: #2563eb;
+  background: #28a745;
+  box-shadow: 0 0 0 2px #28a745;
+}
+
+.edu-node:hover .node-marker {
+  transform: scale(1.2);
 }
 
 .degree-card {
-    background: white;
-    margin-top: 30px;
-    padding: 20px;
-    border-radius: 12px;
-    width: 260px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    transition: 0.3s ease;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  margin-left: 30px;
+  flex: 1;
+}
+
+.edu-node.active .degree-card {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
 }
 
 .degree-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .degree-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 6px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 16px;
 }
 
 .degree-years {
-    font-size: 14px;
-    font-weight: 600;
-    color: #2563eb;
+  color: #007bff;
+  font-size: 14px;
+  margin-bottom: 8px;
 }
 
-/* ------------------- */
-/* DEGREE DETAILS SECTIONS */
-/* ------------------- */
+.degree-card > div:last-child {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .edu-node {
+    flex-direction: column !important;
+    text-align: center !important;
+    margin: 20px 0;
+  }
+
+  .edu-node .degree-card {
+    margin-left: 0 !important;
+    margin-top: 15px;
+  }
+
+  .edu-track::before {
+    left: 20px;
+  }
+
+  .node-marker {
+    align-self: flex-start;
+    margin-left: 20px;
+  }
+}
+
+/* Degree Details - Same as before */
 .degree-details {
-    display: none;
+  display: none;
+  margin-top: 40px;
 }
 
 .degree-details.active {
-    display: block;
-    animation: fadeIn 0.5s;
+  display: block;
 }
 
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(10px);}
-    to {opacity: 1; transform: translateY(0);}
+.degree-details h2 {
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
-/* ------------------- */
-/* METRICS & WORK CARDS */
-.edu-metrics, .academic-work {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 25px;
-    margin-bottom: 40px;
+.edu-metrics {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
 }
 
-.metric-card, .work-card {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    transition: 0.3s ease;
-}
-
-.metric-card:hover, .work-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+.metric-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  min-width: 120px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .metric-value {
-    font-size: 28px;
-    font-weight: 700;
-    color: #2563eb;
-    margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 5px;
 }
 
 .metric-label {
-    font-size: 14px;
-    color: #6b7280;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.metric-description {
+  font-size: 12px;
+  color: #888;
+}
+
+.academic-work {
+  margin-bottom: 30px;
+}
+
+.work-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-left: 4px solid #007bff;
 }
 
 .work-title {
-    font-weight: 600;
-    margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 16px;
 }
 
 .work-description {
+  color: #666;
+  line-height: 1.6;
+}
+
+.work-description strong {
+  color: #333;
+}
+
+.work-description li {
+  margin-bottom: 5px;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .edu-metrics {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .metric-card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .work-card {
+    padding: 15px;
+  }
+
+  .work-title {
     font-size: 14px;
-    color: #6b7280;
-    line-height: 1.6;
+  }
+
+  .work-description {
+    font-size: 14px;
+  }
 }

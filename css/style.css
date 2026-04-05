@@ -170,7 +170,23 @@ body.section-show .close-btn{
 	overflow-x:hidden;
 }
 .front-section{
+	position:relative;
 	background:#FFF;
+	overflow:hidden;
+}
+.front-bg-canvas{
+	position:absolute;
+	inset:0;
+	width:100%;
+	height:100%;
+	z-index:0;
+	display:block;
+	background: radial-gradient(circle at top center, rgba(183, 163, 137, 0.12), transparent 42%),
+		linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.5));
+}
+.front-section .container{
+	position:relative;
+	z-index:1;
 }
 .section{
 	position:fixed;
@@ -188,9 +204,9 @@ body.section-show .close-btn{
 	transition: all .3s ease;
 }
 body.section-show .section.active{
-	-webkit-transition:opacity .4s 1.2s ease;
-	-moz-transition:opacity .4s 1.2s ease;
-	transition:opacity .4s 1.2s ease;
+	-webkit-transition:opacity .4s 0.5s ease;
+	-moz-transition:opacity .4s 0.5s ease;
+	transition:opacity .4s 0.5s ease;
 	z-index:99;
 	opacity:1;
 	visibility:visible;
@@ -358,58 +374,52 @@ body.section-show .section.active{
 /* Transition Mask - Optimized for Performance */
 :root {
 	--mask-size: 500px;
-	--mask-top: 260px;
+	--mask-top: 200px;
 	--mask-size-tablet: 300px;
-	--mask-top-tablet: 150px;
+	--mask-top-tablet: 120px;
 	--mask-size-mobile: 200px;
-	--mask-top-mobile: 100px;
+	--mask-top-mobile: 80px;
 	--mask-size-small: 150px;
-	--mask-top-small: 80px;
+	--mask-top-small: 60px;
+}
+
+.front-person-img {
+	position: relative;
+}
+
+.transition-mask {
+	position: absolute;
+	inset: 0;
+	transform: scale(0);
+	transform-origin: center center;
+	z-index: 25;
+	overflow: hidden;
+	will-change: transform, opacity;
+	pointer-events: none;
+	background: rgba(255,255,255,0.94);
+	border-radius: 16px;
 }
 
 body.section-show .transition-mask {
-	position: absolute;
-	top: var(--mask-top);
-	height: var(--mask-size);
-	width: var(--mask-size);
-	left: 0;
-	right: 0;
-	margin: auto;
-	z-index: 22;
-	transform: rotate(45deg) translateZ(0); /* Force hardware acceleration */
-	overflow: hidden;
-	will-change: transform, width, height, top; /* Performance hint */
-	animation: fill2 0.8s 0.4s both ease;
+	animation: maskOpen 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Responsive transition-mask - Consolidated breakpoints */
+/* Responsive transition-mask is now automatic inside front-person-img */
 @media (max-width: 768px) {
-	body.section-show .transition-mask {
-		--mask-size: var(--mask-size-tablet);
-		--mask-top: var(--mask-top-tablet);
-		top: var(--mask-top);
-		height: var(--mask-size);
-		width: var(--mask-size);
+	.transition-mask {
+		border-radius: 12px;
 	}
 }
 
 @media (max-width: 480px) {
-	body.section-show .transition-mask {
-		--mask-size: var(--mask-size-mobile);
-		--mask-top: var(--mask-top-mobile);
-		top: var(--mask-top);
-		height: var(--mask-size);
-		width: var(--mask-size);
+	.transition-mask {
+		border-radius: 10px;
 	}
 }
 
 @media (max-width: 320px) {
-	body.section-show .transition-mask {
-		--mask-size: var(--mask-size-small);
-		--mask-top: var(--mask-top-small);
-		top: var(--mask-top);
-		height: var(--mask-size);
-		width: var(--mask-size);
+	.transition-mask {
+		border-radius: 8px;
 	}
 }
 
@@ -424,22 +434,23 @@ body .transition-mask::before {
 }
 
 body.section-show .transition-mask::before {
-	animation: fill 0.4s both ease;
+	animation: fill 0.6s both ease;
 	background: #CCC;
 }
 
-/* Optimized keyframes - Reduced redundancy */
-@keyframes fill2 {
+/* Recommended transition mask animation */
+@keyframes maskOpen {
 	0% {
-		transform: rotate(45deg) translateZ(0);
+		transform: scale(0);
+		opacity: 0;
+	}
+	70% {
+		transform: scale(1.05);
+		opacity: 1;
 	}
 	100% {
-		z-index: 50;
-		transform: rotate(0deg) translateZ(0);
-		height: 100vh; /* Use viewport units for better performance */
-		width: 100vw;
-		top: 0;
-		bottom: auto;
+		transform: scale(1);
+		opacity: 1;
 	}
 }
 
@@ -762,7 +773,7 @@ body.section-show .transition-mask::before {
 	-moz-transition:all .3s ease;
 	transition:all .3s ease;
 	position:relative;
-	color:#999;
+	color:#4682FF;
 	text-align:left;
 	text-transform:uppercase;
 	letter-spacing:3px;
@@ -792,7 +803,7 @@ body.section-show .transition-mask::before {
 	display:none;
 }
 .front-person-links > ul > li > a:hover{
-	color:#B7A389;
+	color:#4682FF;
 }
 .front-person-links > ul > li > a:hover:after,
 .front-person-links > ul > li > a:hover:before{
