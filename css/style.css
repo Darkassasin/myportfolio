@@ -588,6 +588,7 @@ body.section-show .transition-mask::before {
 }
 .front-person-img > img{
 	max-width:100%;
+	padding-left: 5em;
 	vertical-align:bottom;
 	-webkit-transform:rotate(-45deg) translateY(40px);
 	-moz-transform:rotate(-45deg) translateY(40px);
